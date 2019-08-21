@@ -5,6 +5,11 @@ class Dog
   	info_hash.each{|key, value| self.send(("#{key}="), value)}
   end
 
+  def self.create(info_hash)
+    new_dog = Dog.new(info_hash)
+    new_dog.save
+  end
+
   def self.create_table
     sql = <<-SQL
       CREATE TABLE IF NOT EXISTS dogs(id INTEGER PRIMARY KEY, name TEXT, breed TEXT)
