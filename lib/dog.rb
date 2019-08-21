@@ -11,7 +11,15 @@ class Dog
   end
 
   def self.new_from_db(row)
-    new_student = Dog.new(row)
+    new_student = Dog.new(self.create_info_hash(row))
+  end
+
+  def self.create_info_hash(array)
+    hash = {}
+    hash[:id] = array[0]
+    hash[:name] = array[1]
+    hash[:breed] = array[2]
+    hash
   end
 
   def self.create_table
