@@ -36,7 +36,7 @@ class Dog
       WHERE id = #{id}
     SQL
     return_data = DB[:conn].execute(sql)
-    new_dog = Dog.new(self.create_info_hash(return_data[0]))
+    new_dog = Dog.new(self.create_info_hash_from_row(return_data[0]))
     new_dog
   end
 
