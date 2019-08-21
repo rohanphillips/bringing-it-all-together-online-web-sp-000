@@ -39,6 +39,7 @@ class Dog
       FROM dogs
       WHERE name = #{info[:name]} AND breed = #{info[:breed]}
     SQL
+    binding.pry
     return_data = DB[:conn].execute(sql)
     binding.pry
     new_dog = Dog.new(self.create_info_hash(return_data[0]))
