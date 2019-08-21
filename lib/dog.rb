@@ -47,7 +47,7 @@ class Dog
       WHERE name = ? AND breed = ?
     SQL
     return_data = DB[:conn].execute(sql, info[:name], info[:breed])
-    return_data.size > 0 ? (new_dog = self.new_from_db (return_data[0])) : (new_dog = Dog.new(self.create_info_hash_from_text(name, breed)).save)
+    return_data.size > 0 ? (new_dog = self.new_from_db (return_data[0])) : (new_dog = Dog.new(self.create_info_hash_from_text(info[:name], info[:breed])).save)
     new_dog
   end
 
