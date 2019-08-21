@@ -22,6 +22,17 @@ class Dog
     hash
   end
 
+  def self.find(id)
+    sql = <<-SQL
+      SELECT *
+      FROM dogs
+      WHERE id = #{id}
+    SQL
+    return_data = DB[:conn].execute(sql)
+    new_dog = Dog.new(self.create_info_hash(return_data[0]))
+    new_dog
+  end
+
   def self.create_table
     sql = <<-SQL
       CREATE TABLE IF NOT EXISTS dogs(id INTEGER PRIMARY KEY, name TEXT, breed TEXT)
