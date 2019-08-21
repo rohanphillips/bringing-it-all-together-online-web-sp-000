@@ -11,14 +11,21 @@ class Dog
   end
 
   def self.new_from_db(row)
-    new_student = Dog.new(self.create_info_hash(row))
+    new_student = Dog.new(self.create_info_hash_from_row(row))
   end
 
-  def self.create_info_hash(array)
+  def self.create_info_hash_from_row(array)
     hash = {}
     hash[:id] = array[0]
     hash[:name] = array[1]
     hash[:breed] = array[2]
+    hash
+  end
+
+  def self.create_info_hash_from_text(name, breed)
+    hash = {}
+    hash[:name] = name
+    hash[:breed] = breed
     hash
   end
 
@@ -40,8 +47,7 @@ class Dog
       WHERE name = ? AND breed = ?
     SQL
     return_data = DB[:conn].execute(sql, info[:name], info[:breed])
-    binding.pry
-    new_dog = Dog.new(self.create_info_hash(return_data[0]))
+    return_date.size > 0 ? new_dog = self.new_from_db (return_data[0]) : new_dog = Dog.new(self.create_info_hash_from_text(name, breed)).save
     new_dog
   end
 
