@@ -37,7 +37,7 @@ class Dog
     sql = <<-SQL
       SELECT *
       FROM dogs
-      WHERE name = #{info:name} AND breed = #{info:breed}
+      WHERE name = #{info[:name]} AND breed = #{info[:breed]}
     SQL
     return_data = DB[:conn].execute(sql)
     binding.pry
