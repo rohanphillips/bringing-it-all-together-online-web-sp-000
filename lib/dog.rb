@@ -59,7 +59,7 @@ class Dog
       LIMIT 1
     SQL
     return_data = DB[:conn].execute(sql)
-    new_dog = self.new_from_db (return_data[0]))
+    new_dog = self.new_from_db (return_data[0])
     new_dog
   end
 
