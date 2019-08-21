@@ -37,10 +37,10 @@ class Dog
     sql = <<-SQL
       SELECT *
       FROM dogs
-      WHERE name = #{info[:name]} AND breed = #{info[:breed]}
+      WHERE name = ? AND breed = ?
     SQL
     binding.pry
-    return_data = DB[:conn].execute(sql)
+    return_data = DB[:conn].execute(sql, info[:name], info[:breed])
     binding.pry
     new_dog = Dog.new(self.create_info_hash(return_data[0]))
     new_dog
