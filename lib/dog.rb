@@ -56,6 +56,7 @@ class Dog
       SELECT *
       FROM dogs
       WHERE name = #{name}
+      LIMIT 1
     SQL
     return_data = DB[:conn].execute(sql)
     new_dog = self.new_from_db (return_data[0]))
