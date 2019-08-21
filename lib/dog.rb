@@ -55,7 +55,7 @@ class Dog
     sql = <<-SQL
       SELECT *
       FROM dogs
-      WHERE name = #{name} 
+      WHERE name = #{name}
     SQL
     return_data = DB[:conn].execute(sql)
     new_dog = self.new_from_db (return_data[0]))
