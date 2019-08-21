@@ -33,11 +33,11 @@ class Dog
     new_dog
   end
 
-  def self.find_or_create_by(name, breed)
+  def self.find_or_create_by(info)
     sql = <<-SQL
       SELECT *
       FROM dogs
-      WHERE name = #{name} AND breed = #{breed}
+      WHERE name = #{info:name} AND breed = #{info:breed}
     SQL
     return_data = DB[:conn].execute(sql)
     binding.pry
