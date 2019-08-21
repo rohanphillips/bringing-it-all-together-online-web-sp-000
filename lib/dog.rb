@@ -63,6 +63,13 @@ class Dog
     new_dog
   end
 
+  def update
+    sql = <<-SQL
+      UPDATE dogs SET name = ?, breed = ? WHERE id = ?
+    SQL
+    DB[:conn].execute(sql, self.name, self.grade, self.id)
+  end
+
   def self.create_table
     sql = <<-SQL
       CREATE TABLE IF NOT EXISTS dogs(id INTEGER PRIMARY KEY, name TEXT, breed TEXT)
