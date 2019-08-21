@@ -22,7 +22,7 @@ class Dog
     hash
   end
 
-  def self.find(id)
+  def self.find_by_id(id)
     sql = <<-SQL
       SELECT *
       FROM dogs
