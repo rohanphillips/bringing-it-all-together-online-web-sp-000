@@ -7,7 +7,7 @@ class Dog
 
   def self.create_table
     sql = <<-SQL
-
+      CREATE IF NOT EXISTS
     SQL
   end
 
