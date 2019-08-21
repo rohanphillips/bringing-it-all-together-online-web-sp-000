@@ -33,6 +33,18 @@ class Dog
     new_dog
   end
 
+  def self.find_or_create_by(name, breed)
+    sql = <<-SQL
+      SELECT *
+      FROM dogs
+      WHERE name = #{name}, breed = #{breed}
+    SQL
+    return_data = DB[:conn].execute(sql)
+    binding.pry
+    new_dog = Dog.new(self.create_info_hash(return_data[0]))
+    new_dog
+  end
+
   def self.create_table
     sql = <<-SQL
       CREATE TABLE IF NOT EXISTS dogs(id INTEGER PRIMARY KEY, name TEXT, breed TEXT)
